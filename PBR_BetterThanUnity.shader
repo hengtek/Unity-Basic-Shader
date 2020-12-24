@@ -187,15 +187,14 @@ Shader "Unlit/MyPBR"
                 o.worldPosition = mul(unity_ObjectToWorld,v.vertex);
                 o.localPostion = v.vertex.xyz;
                 o.tangent = UnityObjectToWorldDir(v.tangent);
-                o.bitangent = cross(o.normal,o.tangent) * v.tangent.w;
+                //o.bitangent = cross(o.normal,o.tangent) * v.tangent.w;
                 return o;
             }
-
 
             float4 frag (v2f i) : SV_Target
             {
                 //Variable
-                float3 T = normalize(cross(i.normal ,i.tangent));
+                float3 T = normalize(i.tangent);
                 float3 N = normalize(i.normal);
                 float3 B = normalize( cross(N,T));
                 // float3 B = normalize( i.bitangent);
